@@ -1,0 +1,17 @@
+# create_backup_jobs.yml
+---
+- hosts: all 
+  become: true
+  tasks:
+    - name: Add backup jobs
+      veeam-job:
+        type: job
+        state: present
+        name: "{{ item.name }}"
+        includedirs: "{{ item.includedirs }}"
+        prefreeze: "{{ item.prefreeze }}"
+        reponame: "[FQDN][repo]name"
+        maxpoints: "{{ item.maxpoints }}"
+        rundays: "{{ item.rundays }}"
+        runat: "{{ item.runat }}"
+      with_items: "{{ veeam }}"

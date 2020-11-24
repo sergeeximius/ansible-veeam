@@ -1,0 +1,34 @@
+---
+veeam:
+  - jobname: bkp-data
+    name: bkp-data 
+    includedirs: /home/data
+    prefreeze: ""
+    maxpoints: 4
+    rundays: Sunday
+    runat: 02:00
+  
+  - jobname: bkp-postgres
+    name: bkp-postgres
+    includedirs: /backup/postgres
+    prefreeze: /opt/scripts/postgres.sh
+    maxpoints: 90
+    rundays: All
+    runat: 02:00
+    
+  - jobname: bkp-redis
+    name: bkp-redis
+    includedirs: /backup/redis
+    prefreeze: /opt/scripts/redis.sh
+    maxpoints: 7
+    rundays: All
+    runat: 02:00
+    
+  - jobname: bkp-minio
+    name: bkp-minio
+    includedirs: /mnt/s3
+    prefreeze: ""
+    maxpoints: 90
+    rundays: All
+    runat: 02:00
+

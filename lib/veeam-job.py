@@ -79,6 +79,8 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.six import b
 
 def cmd(command):
+    # Copyright: (c) 2012, Michael DeHaan <michael.dehaan@gmail.com>
+    # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
     lang_env = dict(LANG='C', LC_ALL='C', LC_MESSAGES='C')
     p = subprocess.Popen(command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=lang_env)
     stdout = b("")

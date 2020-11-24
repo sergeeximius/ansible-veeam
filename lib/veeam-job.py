@@ -79,6 +79,7 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.six import b
 
 def cmd(command):
+    # This is code from https://github.com/ansible/ansible/blob/devel/lib/ansible/modules/service.py
     # Copyright: (c) 2012, Michael DeHaan <michael.dehaan@gmail.com>
     # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
     lang_env = dict(LANG='C', LC_ALL='C', LC_MESSAGES='C')

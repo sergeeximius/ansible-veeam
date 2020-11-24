@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Copyright: (c) 2020, Sergey Sedov <serge.eximius@gmail.com>
-# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# MIT https://github.com/sergeeximius/ansible-veeam/blob/main/LICENSE
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
@@ -104,7 +104,6 @@ def cmd(command):
 
 
 def jobInfo(jobname):
-    #cmd_txt = ["veeamconfig", "job", "info", "--name", jobname]
     rc, stdout, stderr = cmd(["veeamconfig", "job", "info", "--name", jobname])
     ji = {}
     for line in to_text(stdout).split('\n'):
@@ -205,7 +204,6 @@ def main():
                 for key in ji:
                     if ji[key].lower().replace(' ', '') != module.params[key].lower().replace(' ', ''):
                         if key in ["rundays", "runat"]:
-                            #result['si_runat'] = json.dumps(to_text(ji["runat"]))
                             cmd_txt = ["veeamconfig", "schedule", "set", "--jobName", module.params['name']]
                             if module.params['rundays'] != None:
                                 if module.params['rundays'].lower() == "all":
@@ -230,7 +228,6 @@ def main():
                         rc, stdout, stderr = cmd(cmd_txt)
                         if rc == 0:
                             result['changed'] = True
-                            #result['diff_key'] = json.dumps(to_text(key))
                             result['message'] = json.dumps(to_text(stdout).split('\n')[0])
                         else:
                             result['message'] = json.dumps(to_text(stderr).split('\n')[0])
